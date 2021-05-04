@@ -1,2 +1,2 @@
 # python_practice
-A home for all my practice python scripts.
+A home for some practice python scripts.
