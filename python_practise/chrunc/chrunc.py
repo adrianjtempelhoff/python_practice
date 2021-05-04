@@ -7,58 +7,70 @@ uppers="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 numbers="0123456789"
 symbols="~`!@#$%^&*()_+-=[]\{}|;':\",./<>?"
 
-inp=sys.argv[1] # "," # "word@,%^"
+inp="a%%"
+#inp="a%%"
 
-pt=[]
-sp=list(inp)
-sp.reverse()
+words=[]
 
-for i in sp:
-  if i == "@":
-    pt.append(0)
-  elif i == ",":
-    pt.append(0)
-  elif i == "%":
-    pt.append(0)
-  elif i == "^":
-    pt.append(0)
-  else:
-    pt.append("-")
+#if i == "@":   # lowers
+#elif i == ",": # uppers
+#elif i == "%": # numbers
+#elif i == "^": # symbols
+#else:
 
-print pt
-print sp
 
-position=0
+#bw="baseword"
+#for i in range(0,10):
+#  print bw + str(i)
+#bw="baseword%"
+#for i in numbers:
+#  print bw.replace("%", i)
+#bw="baseword^"
+#for i in symbols:
+#  print bw.replace("^", i)
+#bw="baseword,"
+#for i in uppers:
+#  print bw.replace(",", i)
+#bw="baseword@"
+#for i in lowers:
+#  print bw.replace("@", i)
 
-opt=""
 
-while position < len(sp):
-  #print position
-  if pt[position] != '-':
-    #print sp[position]
-    lng=0
-    chrs=""
-    if sp[position] == "@":
-      lng=len(lowers)
-      chrs=lowers
-    elif sp[position] == ",":
-      lng=len(uppers)
-      chrs=uppers
-    elif sp[position] == "%":
-      lng=len(numbers)
-      chrs=numbers
-    elif sp[position] == "^":
-      lng=len(symbols)
-      chrs=symbols
-    while pt[position] < lng:
-      opt += chrs[pt[position]]
-      pt[position]+=1
-      #break
-  else:
-    opt+=sp[position]
-  if position == len(sp):
-    position=0
-    opt=""
-  else:
-    position+=1
-    print opt
+def this_plus_this(dis1, dis2):
+  return dis1 + dis2
+
+c=inp.count("%")
+
+
+a="a"
+
+tpo=""
+temp=""
+
+for j in range(0,c): 
+  tpo=""
+  for i in numbers:
+    temp=str(i)
+    tpo+=this_plus_this(a,str(i))
+    print tpo
+    tpo=this_plus_this(tpo,temp)
+
+
+
+
+
+
+#for j in range(0,c):
+#  opt=""
+#  for i in numbers:
+#    opt+=str(i)
+#  print "a"+opt
+  
+
+
+#for i in numbers:
+#  print i
+
+
+#for w in words:
+#  print w
