@@ -1,76 +1,95 @@
 #!/usr/bin/python
 
 import sys
+import time
 
-lowers="abcdefghijklmnopqrstuvwxyz"
-uppers="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+baseword=""
+
+symbols="!@#$%^&*(){}[]|\/.,<>?`~-_=+"
 numbers="0123456789"
-symbols="~`!@#$%^&*()_+-=[]\{}|;':\",./<>?"
+uppers="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+lowers="abcdefghijklmnopqrstuvwxyz"
 
-inp="a%%"
-#inp="a%%"
+tmp=sys.argv[1]
+print tmp
+
+tmp=tmp.replace("^", "(symbol)")
+tmp=tmp.replace("%", "(number)")
+tmp=tmp.replace(",", "(upper)")
+tmp=tmp.replace("@", "(lower)")
+print tmp
 
 words=[]
 
-#if i == "@":   # lowers
-#elif i == ",": # uppers
-#elif i == "%": # numbers
-#elif i == "^": # symbols
-#else:
+temp1=""#"word^%,@"
+temp2=tmp#"word(symbol)(symbol)(number)(upper)(lower)"
 
+#words.append("testing one added")
+words.append(temp2)
 
-#bw="baseword"
-#for i in range(0,10):
-#  print bw + str(i)
-#bw="baseword%"
-#for i in numbers:
-#  print bw.replace("%", i)
-#bw="baseword^"
-#for i in symbols:
-#  print bw.replace("^", i)
-#bw="baseword,"
-#for i in uppers:
-#  print bw.replace(",", i)
-#bw="baseword@"
-#for i in lowers:
-#  print bw.replace("@", i)
+scount=temp2.count("(symbol)")
+ncount=temp2.count("(number)")
+ucount=temp2.count("(upper)")
+lcount=temp2.count("(lower)")
 
+def do_symbols():
+  for wrd in words:
+    #print wrd
+    if wrd.__contains__("(symbol)"):
+      for sym in symbols:
+        n=wrd.replace("(symbol)",sym,1)
+        words.append(n)
 
-def this_plus_this(dis1, dis2):
-  return dis1 + dis2
+def do_numbers():
+  for wrd in words:
+    #print wrd
+    if wrd.__contains__("(number)"):
+      for num in numbers:
+        n=wrd.replace("(number)",num,1)
+        words.append(n)
 
-c=inp.count("%")
+def do_uppers():
+  for wrd in words:
+    #print wrd
+    if wrd.__contains__("(upper)"):
+      for upp in uppers:
+        n=wrd.replace("(upper)",upp,1)
+        words.append(n)
 
-
-a="a"
-
-tpo=""
-temp=""
-
-for j in range(0,c): 
-  tpo=""
-  for i in numbers:
-    temp=str(i)
-    tpo+=this_plus_this(a,str(i))
-    print tpo
-    tpo=this_plus_this(tpo,temp)
-
-
-
-
-
-
-#for j in range(0,c):
-#  opt=""
-#  for i in numbers:
-#    opt+=str(i)
-#  print "a"+opt
+def do_lowers():
+  for wrd in words:
+    #print wrd
+    if wrd.__contains__("(lower)"):
+      for low in lowers:
+        n=wrd.replace("(lower)",low,1)
+        words.append(n)
   
 
+if scount > 0:
+  do_symbols()
 
-#for i in numbers:
-#  print i
+if ncount > 0:
+  do_numbers()
 
+if ucount > 0:
+  do_uppers()
 
-#for w in words:
-#  print w
+if lcount > 0:
+  do_lowers()
+#print words
+
+#for jj in range(0,scount):
+#  do_symbols()
+
+#print words
+
+for wrd in words:
+  print wrd
+
+# this seems to be working
+
+# usage: python chrunc.py word^%,@
+# ^ symbols
+# % number
+# , uppers
+# @ lowers
