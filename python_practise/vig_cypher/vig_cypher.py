@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #alphabet
 a=["a","b","c","d","e","f","g","h","i","j","k","l","m",
    "n","o","p","q","r","s","t","u","v","w","x","y","z"]
@@ -21,7 +21,7 @@ for i in a:
   #clear n
   n=[]
 #the message to encode/decode
-d=raw_input("message: ").lower()
+d=input("message: ")
 #go through each rotation
 for h in range(0,len(v)):
   #go through each letter of the message
@@ -32,6 +32,6 @@ for h in range(0,len(v)):
     else:
       e+=w
   #display the variation of message
-  print e + " : " + str(h) + "|" + str((h-26)*-1)
+  print(e + " : " + str(h) + "|" + str((h-26)*-1))
   #clear e
   e=""
