@@ -1,64 +1,37 @@
 #!/usr/bin/python
-
-print "vigenere cypher"
-
+#alphabet
 a=["a","b","c","d","e","f","g","h","i","j","k","l","m",
    "n","o","p","q","r","s","t","u","v","w","x","y","z"]
-v=[]
-n=[]
-t=""
-c=0
+#setup variables
+v,e,n,c=[],"",[],0
+#create the rotation alphabets for each letter
 for i in a:
-  #print i
+  #the begining part
   for ii in a[c:]:
-    t+=ii
+    #add to n
     n+=ii
+  #the remaining part
   for ii in a[:c]:
-    t+=ii
+    #add to n
     n+=ii
-  #print t
-  v+=[n]
-  n=[]
-  t=""
+  #increment c by 1
   c+=1
-
-#print v
-
-print v[0]
-
-print v[13]
-
-print v[25]
-
-
-rot=input("what rotation(0-25): ")
-
-print v[rot]
-
-emsg=""
-
-dmsg=raw_input("message: ") #"hack"
-
-print "the message: " + dmsg
-
-for w in dmsg:
-  #print "the letter: " + w
-  f=a.index(w)
-  #print "the index: " + str(f)
-  #print "the encoded letter: " + str(v[rot][f])
-  emsg+=str(v[rot][f])
-  #print "\n"
-
-print emsg
-#emsg=""
-
-#for h in range(0,len(v)):
-#  for w in dmsg:
-#    f=a.index(w)
-#    emsg+=str(v[h][f])
-#  print emsg + " : " + str(h)
-#  emsg=""
-
-
-
-
+  #add n to v
+  v+=[n]
+  #clear n
+  n=[]
+#the message to encode/decode
+d=raw_input("message: ").lower()
+#go through each rotation
+for h in range(0,len(v)):
+  #go through each letter of the message
+  for w in d:
+    if w.isalpha():
+      #the character substitute
+      e+=str(v[h][a.index(w)])
+    else:
+      e+=w
+  #display the variation of message
+  print e + " : " + str(h) + "|" + str((h-26)*-1)
+  #clear e
+  e=""
