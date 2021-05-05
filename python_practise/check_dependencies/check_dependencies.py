@@ -34,16 +34,4 @@ for dep in dependent:
     prRed(dep + " does not exist")
   else:
     prGreen(dep + " exists")
-#  print(dep + " " + kchc(dep))
-  #results[results.len()] = kchc(dep)
-#  prRed("aa")
 
-#j=os.system("ldois --version")
-##print j
-#chck(j)
-
-#j=os.system("ls --version")
-##print j
-#chck(j)
-
-#print os.popen2("lafgads --version", mode='t', bufsize=-1)
